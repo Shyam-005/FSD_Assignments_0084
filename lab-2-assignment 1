@@ -1,0 +1,110 @@
+import './App.css';
+
+function App() {
+  return (
+    <div style={styles.page}>
+      <div style={styles.card}>
+        {/* Profile photo placeholder */}
+        <div style={styles.avatar}>👤</div>
+
+        <h1 style={styles.name}>Your Name</h1>
+        <p style={styles.title}>Frontend Developer</p>
+
+        <div style={styles.section}>
+          <h2 style={styles.heading}>About</h2>
+          <p style={styles.text}>
+            A short bio about yourself — what you do, what you're
+            passionate about, and what you're looking for.
+          </p>
+        </div>
+
+        <div style={styles.section}>
+          <h2 style={styles.heading}>Skills</h2>
+          <ul style={styles.list}>
+            <li>JavaScript / React</li>
+            <li>HTML & CSS</li>
+            <li>Node.js</li>
+          </ul>
+        </div>
+
+        <div style={styles.section}>
+          <h2 style={styles.heading}>Experience</h2>
+          <p style={styles.text}>
+            <strong>Job Title</strong> — Company Name (2022–Present)
+            <br />
+            Brief description of what you did in this role.
+          </p>
+        </div>
+
+        <div style={styles.section}>
+          <h2 style={styles.heading}>Contact</h2>
+          <p style={styles.text}>
+            Email: your.email@example.com
+            <br />
+            LinkedIn: linkedin.com/in/yourname
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+const styles = {
+  page: {
+    minHeight: '100vh',
+    background: '#f4f4f8',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: '2rem',
+    fontFamily: 'Arial, sans-serif',
+  },
+  card: {
+    background: '#fff',
+    borderRadius: '12px',
+    boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
+    padding: '2rem',
+    maxWidth: '500px',
+    width: '100%',
+    textAlign: 'center',
+  },
+  avatar: {
+    width: '100px',
+    height: '100px',
+    borderRadius: '50%',
+    background: '#e0e0e0',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontSize: '3rem',
+    margin: '0 auto 1rem',
+  },
+  name: {
+    margin: '0.5rem 0 0',
+    fontSize: '1.8rem',
+  },
+  title: {
+    color: '#666',
+    marginBottom: '1.5rem',
+  },
+  section: {
+    textAlign: 'left',
+    marginBottom: '1.2rem',
+  },
+  heading: {
+    fontSize: '1.1rem',
+    borderBottom: '2px solid #eee',
+    paddingBottom: '0.3rem',
+    marginBottom: '0.5rem',
+  },
+  text: {
+    color: '#444',
+    lineHeight: 1.5,
+  },
+  list: {
+    color: '#444',
+    paddingLeft: '1.2rem',
+  },
+};
+
+export default App;
