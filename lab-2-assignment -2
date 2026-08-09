@@ -1,0 +1,296 @@
+import React from "react";
+
+function App() {
+  return (
+    <div style={styles.page}>
+
+      {/* ================= HEADER ================= */}
+      <header style={styles.header}>
+        <div style={styles.logo}>MyWebApp</div>
+
+        <nav>
+          <a href="#home" style={styles.navLink}>Home</a>
+          <a href="#about" style={styles.navLink}>About</a>
+          <a href="#services" style={styles.navLink}>Services</a>
+          <a href="#contact" style={styles.navLink}>Contact</a>
+        </nav>
+      </header>
+
+
+      {/* ================= MAIN CONTENT ================= */}
+      <main>
+
+        {/* Home Section */}
+        <section id="home" style={styles.hero}>
+          <h1 style={styles.heroTitle}>
+            Welcome to My Web App
+          </h1>
+
+          <p style={styles.heroText}>
+            This is a simple web application created using React.
+            It contains a Header, Main Content and Footer.
+          </p>
+
+          <button style={styles.button}>
+            Get Started
+          </button>
+        </section>
+
+
+        {/* About Section */}
+        <section id="about" style={styles.section}>
+          <h2 style={styles.heading}>About Us</h2>
+
+          <p style={styles.text}>
+            This web application is created as part of a Full Stack
+            Development activity. The application demonstrates how
+            reusable components such as Header and Footer can be
+            used in a web application.
+          </p>
+        </section>
+
+
+        {/* Services Section */}
+        <section id="services" style={styles.section}>
+          <h2 style={styles.heading}>Our Services</h2>
+
+          <div style={styles.cards}>
+
+            <div style={styles.card}>
+              <h3>Web Development</h3>
+              <p>
+                Creating modern and responsive websites using
+                modern web technologies.
+              </p>
+            </div>
+
+            <div style={styles.card}>
+              <h3>React Development</h3>
+              <p>
+                Building interactive user interfaces using React.
+              </p>
+            </div>
+
+            <div style={styles.card}>
+              <h3>Full Stack Development</h3>
+              <p>
+                Developing both frontend and backend applications.
+              </p>
+            </div>
+
+          </div>
+        </section>
+
+
+        {/* Contact Section */}
+        <section id="contact" style={styles.contact}>
+          <h2 style={styles.heading}>Contact Us</h2>
+
+          <p style={styles.text}>
+            Email: example@gmail.com
+          </p>
+
+          <p style={styles.text}>
+            Phone: +91 98765 43210
+          </p>
+        </section>
+
+      </main>
+
+
+      {/* ================= FOOTER ================= */}
+      <footer style={styles.footer}>
+
+        <div>
+          <h3 style={styles.footerTitle}>MyWebApp</h3>
+
+          <p style={styles.footerText}>
+            A simple React web application created for
+            Full Stack Development.
+          </p>
+        </div>
+
+        <div>
+          <h4 style={styles.footerHeading}>Quick Links</h4>
+
+          <a href="#home" style={styles.footerLink}>Home</a>
+          <a href="#about" style={styles.footerLink}>About</a>
+          <a href="#services" style={styles.footerLink}>Services</a>
+          <a href="#contact" style={styles.footerLink}>Contact</a>
+        </div>
+
+        <div>
+          <h4 style={styles.footerHeading}>Follow Us</h4>
+
+          <p style={styles.footerText}>Instagram</p>
+          <p style={styles.footerText}>Facebook</p>
+          <p style={styles.footerText}>LinkedIn</p>
+        </div>
+
+      </footer>
+
+      <div style={styles.copyright}>
+        © 2026 MyWebApp. All Rights Reserved.
+      </div>
+
+    </div>
+  );
+}
+
+
+/* ================= STYLES ================= */
+
+const styles = {
+
+  page: {
+    margin: 0,
+    fontFamily: "Arial, sans-serif",
+    color: "#222",
+    backgroundColor: "#f5f7fa",
+  },
+
+  /* Header */
+  header: {
+    backgroundColor: "#1f2937",
+    color: "white",
+    padding: "20px 60px",
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    position: "sticky",
+    top: 0,
+    zIndex: 100,
+  },
+
+  logo: {
+    fontSize: "26px",
+    fontWeight: "bold",
+  },
+
+  navLink: {
+    color: "white",
+    textDecoration: "none",
+    marginLeft: "30px",
+    fontSize: "16px",
+  },
+
+  /* Hero */
+  hero: {
+    minHeight: "450px",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    textAlign: "center",
+    padding: "40px 20px",
+    backgroundColor: "#e5e7eb",
+  },
+
+  heroTitle: {
+    fontSize: "48px",
+    marginBottom: "15px",
+  },
+
+  heroText: {
+    fontSize: "19px",
+    maxWidth: "650px",
+    lineHeight: "1.6",
+  },
+
+  button: {
+    marginTop: "20px",
+    padding: "12px 28px",
+    border: "none",
+    borderRadius: "6px",
+    backgroundColor: "#2563eb",
+    color: "white",
+    fontSize: "16px",
+    cursor: "pointer",
+  },
+
+  /* Sections */
+  section: {
+    padding: "70px 60px",
+    textAlign: "center",
+    backgroundColor: "white",
+  },
+
+  heading: {
+    fontSize: "32px",
+    marginBottom: "20px",
+  },
+
+  text: {
+    fontSize: "17px",
+    lineHeight: "1.7",
+    maxWidth: "800px",
+    margin: "auto",
+  },
+
+  /* Cards */
+  cards: {
+    display: "flex",
+    justifyContent: "center",
+    gap: "25px",
+    flexWrap: "wrap",
+    marginTop: "35px",
+  },
+
+  card: {
+    width: "250px",
+    padding: "25px",
+    backgroundColor: "#f3f4f6",
+    borderRadius: "10px",
+    boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
+  },
+
+  /* Contact */
+  contact: {
+    padding: "70px 60px",
+    textAlign: "center",
+    backgroundColor: "#e5e7eb",
+  },
+
+  /* Footer */
+  footer: {
+    backgroundColor: "#111827",
+    color: "white",
+    padding: "50px 60px",
+    display: "flex",
+    justifyContent: "space-around",
+    gap: "40px",
+    flexWrap: "wrap",
+  },
+
+  footerTitle: {
+    fontSize: "24px",
+    marginBottom: "10px",
+  },
+
+  footerHeading: {
+    fontSize: "18px",
+    marginBottom: "15px",
+  },
+
+  footerText: {
+    color: "#d1d5db",
+    lineHeight: "1.6",
+  },
+
+  footerLink: {
+    display: "block",
+    color: "#d1d5db",
+    textDecoration: "none",
+    marginBottom: "10px",
+  },
+
+  copyright: {
+    backgroundColor: "#030712",
+    color: "#9ca3af",
+    textAlign: "center",
+    padding: "15px",
+    fontSize: "14px",
+  },
+};
+
+export default App;
