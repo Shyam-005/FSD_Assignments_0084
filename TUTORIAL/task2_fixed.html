@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Task 2 - AFTER (Fixed Layout)</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background: #f4f4f4;
+  }
+  h1 {
+    text-align: center;
+  }
+
+  /* ---------- FIXED NAVBAR (Flexbox) ---------- */
+  .nav {
+    display: flex;             /* replaces float */
+    justify-content: space-between; /* even spacing across the bar */
+    align-items: center;       /* vertical alignment fixed */
+    background: #222;
+    padding: 10px 20px;
+    flex-wrap: wrap;           /* responsive: wraps on small screens */
+  }
+  .nav div {
+    color: white;
+    padding: 8px 12px;
+  }
+
+  /* ---------- FIXED CARD LAYOUT (Grid) ---------- */
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 equal responsive columns */
+    gap: 20px;                              /* clean spacing, no whitespace bugs */
+    margin-top: 30px;
+  }
+  .card {
+    background: white;
+    border: 1px solid #ccc;
+    padding: 20px;
+    box-sizing: border-box; /* padding no longer breaks the width */
+  }
+
+  /* Responsive: stack cards on small screens */
+  @media (max-width: 600px) {
+    .cards {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* ---------- FIXED FOOTER (Flexbox) ---------- */
+  .footer {
+    display: flex;
+    justify-content: center;   /* centered instead of left-aligned */
+    gap: 25px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+  }
+</style>
+</head>
+<body>
+
+  <h1>My Website (Fixed Layout Example)</h1>
+
+  <div class="nav">
+    <div>Home</div>
+    <div>About</div>
+    <div>Services</div>
+    <div>Contact</div>
+  </div>
+
+  <div class="cards">
+    <div class="card">
+      <h3>Card 1</h3>
+      <p>Some sample content that goes inside this card.</p>
+    </div>
+    <div class="card">
+      <h3>Card 2</h3>
+      <p>Some sample content that goes inside this card.</p>
+    </div>
+    <div class="card">
+      <h3>Card 3</h3>
+      <p>Some sample content that goes inside this card.</p>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>Contact Us</span>
+    <span>Privacy Policy</span>
+    <span>© 2026 My Website</span>
+  </div>
+
+</body>
+</html>

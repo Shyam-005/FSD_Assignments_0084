@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Task 3 - JS DOM & Form Validation Demo</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    max-width: 500px;
+    margin: 40px auto;
+    background: #f4f4f4;
+    padding: 20px;
+  }
+  h1 { text-align: center; font-size: 22px; }
+  h2 { font-size: 17px; margin-top: 35px; border-bottom: 2px solid #333; padding-bottom: 5px; }
+
+  /* ---- Section 1: Dynamic To-Do List (DOM manipulation + events) ---- */
+  #todo-input {
+    padding: 8px;
+    width: 70%;
+  }
+  #todo-add-btn {
+    padding: 8px 12px;
+    background: #2563eb;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  #todo-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+  }
+  #todo-list li {
+    background: white;
+    padding: 10px;
+    margin-bottom: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-left: 4px solid #2563eb;
+  }
+  #todo-list li button {
+    background: #dc2626;
+    color: white;
+    border: none;
+    padding: 4px 10px;
+    cursor: pointer;
+  }
+
+  /* ---- Section 2: Live counter (dynamic updates) ---- */
+  #counter-box {
+    background: white;
+    padding: 15px;
+    text-align: center;
+  }
+  #counter-value {
+    font-size: 30px;
+    font-weight: bold;
+    color: #2563eb;
+  }
+  #counter-box button {
+    padding: 6px 14px;
+    margin: 0 5px;
+    cursor: pointer;
+  }
+
+  /* ---- Section 3: Form validation ---- */
+  form {
+    background: white;
+    padding: 15px;
+  }
+  form label {
+    display: block;
+    margin-top: 10px;
+    font-size: 14px;
+  }
+  form input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    margin-top: 4px;
+  }
+  .error-msg {
+    color: #dc2626;
+    font-size: 12px;
+    margin-top: 3px;
+    display: none;
+  }
+  .success-msg {
+    color: green;
+    font-weight: bold;
+    display: none;
+    margin-top: 10px;
+  }
+  form button {
+    margin-top: 15px;
+    padding: 10px 16px;
+    background: #16a34a;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+
+<h1>Task 3: DOM, Events, Dynamic Updates & Form Validation</h1>
+
+<!-- SECTION 1: To-Do list -->
+<h2>1. Dynamic To-Do List (DOM Manipulation + Events)</h2>
+<input type="text" id="todo-input" placeholder="Enter a task...">
+<button id="todo-add-btn">Add</button>
+<ul id="todo-list"></ul>
+
+<!-- SECTION 2: Counter -->
+<h2>2. Live Counter (Dynamic Updates)</h2>
+<div id="counter-box">
+  <div id="counter-value">0</div>
+  <button id="decrease-btn">-</button>
+  <button id="reset-btn">Reset</button>
+  <button id="increase-btn">+</button>
+</div>
+
+<!-- SECTION 3: Form validation -->
+<h2>3. Form Validation</h2>
+<form id="signup-form">
+  <label for="name">Name</label>
+  <input type="text" id="name" placeholder="Enter your name">
+  <div class="error-msg" id="name-error">Name is required (min 3 characters)</div>
+
+  <label for="email">Email</label>
+  <input type="text" id="email" placeholder="Enter your email">
+  <div class="error-msg" id="email-error">Enter a valid email address</div>
+
+  <label for="password">Password</label>
+  <input type="password" id="password" placeholder="Enter password">
+  <div class="error-msg" id="password-error">Password must be at least 6 characters</div>
+
+  <button type="submit">Submit</button>
+  <div class="success-msg" id="success-msg">Form submitted successfully!</div>
+</form>
+
+<script>
+  /* ============ SECTION 1: To-Do List ============ */
+  const todoInput = document.getElementById('todo-input');
+  const todoAddBtn = document.getElementById('todo-add-btn');
+  const todoList = document.getElementById('todo-list');
+
+  todoAddBtn.addEventListener('click', addTodo);
+  todoInput.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') addTodo();
+  });
+
+  function addTodo() {
+    const taskText = todoInput.value.trim();
+    if (taskText === '') {
+      alert('Please enter a task!');
+      return;
+    }
+
+    // Create new list item (DOM manipulation)
+    const li = document.createElement('li');
+    li.textContent = taskText;
+
+    const deleteBtn = document.createElement('button');
+    deleteBtn.textContent = 'Delete';
+    deleteBtn.addEventListener('click', function() {
+      li.remove(); // dynamic update: removes from DOM
+    });
+
+    li.appendChild(deleteBtn);
+    todoList.appendChild(li); // dynamic update: adds to DOM
+
+    todoInput.value = ''; // clear input
+  }
+
+  /* ============ SECTION 2: Live Counter ============ */
+  const counterValue = document.getElementById('counter-value');
+  const increaseBtn = document.getElementById('increase-btn');
+  const decreaseBtn = document.getElementById('decrease-btn');
+  const resetBtn = document.getElementById('reset-btn');
+  let count = 0;
+
+  increaseBtn.addEventListener('click', function() {
+    count++;
+    updateCounter();
+  });
+
+  decreaseBtn.addEventListener('click', function() {
+    count--;
+    updateCounter();
+  });
+
+  resetBtn.addEventListener('click', function() {
+    count = 0;
+    updateCounter();
+  });
+
+  function updateCounter() {
+    counterValue.textContent = count; // dynamic DOM update
+    counterValue.style.color = count < 0 ? 'red' : '#2563eb';
+  }
+
+  /* ============ SECTION 3: Form Validation ============ */
+  const form = document.getElementById('signup-form');
+  const nameInput = document.getElementById('name');
+  const emailInput = document.getElementById('email');
+  const passwordInput = document.getElementById('password');
+
+  const nameError = document.getElementById('name-error');
+  const emailError = document.getElementById('email-error');
+  const passwordError = document.getElementById('password-error');
+  const successMsg = document.getElementById('success-msg');
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault(); // stop page reload, handle with JS instead
+    let isValid = true;
+
+    // Name validation
+    if (nameInput.value.trim().length < 3) {
+      nameError.style.display = 'block';
+      isValid = false;
+    } else {
+      nameError.style.display = 'none';
+    }
+
+    // Email validation using regex
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(emailInput.value.trim())) {
+      emailError.style.display = 'block';
+      isValid = false;
+    } else {
+      emailError.style.display = 'none';
+    }
+
+    // Password validation
+    if (passwordInput.value.length < 6) {
+      passwordError.style.display = 'block';
+      isValid = false;
+    } else {
+      passwordError.style.display = 'none';
+    }
+
+    // Final result
+    if (isValid) {
+      successMsg.style.display = 'block';
+      form.reset();
+      setTimeout(() => successMsg.style.display = 'none', 3000);
+    } else {
+      successMsg.style.display = 'none';
+    }
+  });
+</script>
+
+</body>
+</html>

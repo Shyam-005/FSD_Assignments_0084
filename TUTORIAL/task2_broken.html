@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Task 2 - BEFORE (Broken Layout)</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background: #f4f4f4;
+  }
+  h1 {
+    text-align: center;
+  }
+
+  /* ---------- BROKEN NAVBAR ---------- */
+  .nav {
+    background: #222;
+    padding: 10px;
+  }
+  .nav div {
+    float: left;
+    color: white;
+    margin-right: 5px;
+    padding: 8px;
+  }
+  /* No clearfix -> content below nav will overlap/collapse */
+
+  /* ---------- BROKEN CARD LAYOUT ---------- */
+  .cards {
+    margin-top: 30px;
+  }
+  .card {
+    width: 33%;
+    display: inline-block;
+    background: white;
+    border: 1px solid #ccc;
+    padding: 20px;
+    box-sizing: content-box; /* causes overflow because padding adds to width */
+    vertical-align: top;
+    /* no gap control -> uneven spacing from whitespace in HTML */
+  }
+
+  /* ---------- BROKEN FOOTER ALIGNMENT ---------- */
+  .footer {
+    margin-top: 40px;
+    text-align: left; /* should be centered, looks misaligned */
+  }
+  .footer span {
+    display: block; /* stacks vertically instead of staying in one row */
+  }
+</style>
+</head>
+<body>
+
+  <h1>My Website (Broken Layout Example)</h1>
+
+  <div class="nav">
+    <div>Home</div>
+    <div>About</div>
+    <div>Services</div>
+    <div>Contact</div>
+  </div>
+
+  <div class="cards">
+    <div class="card">
+      <h3>Card 1</h3>
+      <p>Some sample content that goes inside this card.</p>
+    </div>
+    <div class="card">
+      <h3>Card 2</h3>
+      <p>Some sample content that goes inside this card.</p>
+    </div>
+    <div class="card">
+      <h3>Card 3</h3>
+      <p>Some sample content that goes inside this card.</p>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>Contact Us</span>
+    <span>Privacy Policy</span>
+    <span>© 2026 My Website</span>
+  </div>
+
+</body>
+</html>
