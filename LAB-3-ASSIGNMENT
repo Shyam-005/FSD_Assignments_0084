@@ -1,0 +1,245 @@
+import React, { useState } from "react";
+import "./App.css";
+
+function App() {
+  // Store username and password
+  const [formData, setFormData] = useState({
+    username: "",
+    password: "",
+  });
+
+  // Store validation errors
+  const [errors, setErrors] = useState({});
+
+  // Store success message
+  const [message, setMessage] = useState("");
+
+  // Handle input changes
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+
+    // Remove error when user starts typing
+    setErrors({
+      ...errors,
+      [name]: "",
+    });
+
+    setMessage("");
+  };
+
+  // Form validation
+  const validate = () => {
+    const newErrors = {};
+
+    // Username validation
+    if (!formData.username.trim()) {
+      newErrors.username = "Username is required";
+    } else if (formData.username.length < 3) {
+      newErrors.username = "Username must be at least 3 characters";
+    }
+
+    // Password validation
+    if (!formData.password) {
+      newErrors.password = "Password is required";
+    } else if (formData.password.length < 6) {
+      newErrors.password = "Password must be at least 6 characters";
+    }
+
+    setErrors(newErrors);
+
+    // Return true if there are no errors
+    return Object.keys(newErrors).length === 0;
+  };
+
+  // Submit form
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Check validation
+    const isValid = validate();
+
+    if (!isValid) {
+      return;
+    }
+
+    // Store username and password in browser
+    localStorage.setItem("username", formData.username);
+    localStorage.setItem("password", formData.password);
+
+    // Show success message
+    setMessage("Form submitted successfully!");
+
+    // Clear form
+    setFormData({
+      username: "",
+      password: "",
+    });
+  };
+
+  return (
+    <div className="login-container">
+      <div className="login-box">
+
+        <h1>Login Form</h1>
+
+        <form onSubmit={handleSubmit}>
+
+          {/* Username */}
+          <label htmlFor="username">
+            Username
+          </label>
+
+          <input
+            type="text"
+            id="username"
+            name="username"
+            placeholder="Enter username"
+            value={formData.username}
+            onChange={handleChange}
+          />
+
+          {errors.username && (
+            <p className="error">
+              {errors.username}
+            </p>
+          )}
+
+          {/* Password */}
+          <label htmlFor="password">
+            Password
+          </label>
+
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Enter password"
+            value={formData.password}
+            onChange={handleChange}
+          />
+
+          {errors.password && (
+            <p className="error">
+              {errors.password}
+            </p>
+          )}
+
+          {/* Submit button */}
+          <button type="submit">
+            Submit
+          </button>
+
+        </form>
+
+        {/* Success message */}
+        {message && (
+          <p className="success">
+            {message}
+          </p>
+        )}
+
+      </div>
+    </div>
+  );
+}
+
+export default App;
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+}
+
+.login-container {
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-box {
+  width: 350px;
+  background-color: white;
+
+  padding: 30px;
+
+  border-radius: 10px;
+
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.login-box h1 {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.login-box label {
+  display: block;
+
+  margin-top: 15px;
+  margin-bottom: 5px;
+
+  font-weight: bold;
+}
+
+.login-box input {
+  width: 100%;
+
+  padding: 12px;
+
+  border: 1px solid #ccc;
+  border-radius: 5px;
+
+  font-size: 16px;
+}
+
+.login-box input:focus {
+  outline: none;
+  border-color: #333;
+}
+
+.login-box button {
+  width: 100%;
+
+  padding: 12px;
+
+  margin-top: 25px;
+
+  border: none;
+  border-radius: 5px;
+
+  background-color: #333;
+  color: white;
+
+  font-size: 16px;
+
+  cursor: pointer;
+}
+
+.login-box button:hover {
+  background-color: #555;
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+  margin: 5px 0 0;
+}
+
+.success {
+  color: green;
+  text-align: center;
+  font-weight: bold;
+  margin-top: 20px;
+}
